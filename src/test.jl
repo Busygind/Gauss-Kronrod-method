@@ -37,3 +37,32 @@ for n = 1:2, m = 1:3
     println(a6[n, m])
 
 a7 = [2^n for n in 1:10]
+
+
+#Dicts
+d1 = Dict("pi"=>3.14, "e"=2.718)
+delete!(d1, "pi")
+println(haskey(d1, "pi"))
+println(keys(d1))
+println(values(d1))
+for (key, value) in d1
+    println(key, " : ", value)
+end
+
+#Sets
+st1 = Set(["jam", "pam", "ram"])
+println(st1)
+
+push!(st1, "sam")
+println(in("rom", st1))
+
+#functions
+getSum(x,y) = x + y
+x, y = 1, 2
+println(getSum(x, y))
+
+function sum(a, b)
+    return a+b
+end
+
+println(sum(2+2))
