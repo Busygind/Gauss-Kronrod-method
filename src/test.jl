@@ -3,6 +3,7 @@
 f1 = parse(Float64, "1")
 i2 = parse(Int8, "1")
 
+num = 32 / 0 ## num = Inf
 
 #Strings
 
@@ -61,8 +62,33 @@ getSum(x,y) = x + y
 x, y = 1, 2
 println(getSum(x, y))
 
-function sum(a, b)
+function summ(a, b)
     return a+b
 end
 
 println(sum(2+2))
+
+
+#maps creating
+m1 = map(x -> x * x, [1, 2, 3])
+m2 = map((x,y) -> x * y, [2, 3], [4,6])
+println(m1)
+println(m2)
+
+v4 = reduce(+, 1:100) # о да круто
+
+
+#А теперь попытка в ООП
+
+struct Dog
+    name::String
+    bark::String
+end
+
+dog = Dog("Sobaka", "bark bark")
+
+function makeSound(dog::Dog)
+    println(dog.bark)
+end
+
+makeSound(dog)
