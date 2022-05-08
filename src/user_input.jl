@@ -1,7 +1,4 @@
-using Pkg
-
-
-function uinput()
+function func_input()
     print("Введите подынтегральную функцию: ")
     s = readline()
     try
@@ -14,14 +11,15 @@ function uinput()
     end
 end
 
-function get_power(s)
-	re = r"\^[0-9]+"
-	matches = findall(re, s)
-	power = 0
-	for elem in matches
-		power += abs(parse(Int32, s[elem][2:end]))
+function n_input()
+	print("Введите степень точности: ")
+	s = readline()
+	n = tryparse(Int64, s)
+	if (n == nothing)
+		println("Некорректный ввод")
+		return n_input()
+	else
+		return n
 	end
-	return power
 end
 
-input_result = uinput()
