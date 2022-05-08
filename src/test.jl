@@ -36,12 +36,12 @@ end
 a6 = [1 2 3; 4 5 6] #двумерный массив
 for n = 1:2, m = 1:3
     println(a6[n, m])
-
+end
 a7 = [2^n for n in 1:10]
 
 
 #Dicts
-d1 = Dict("pi"=>3.14, "e"=2.718)
+d1 = Dict("pi"=>3.14, "e"=>2.718)
 delete!(d1, "pi")
 println(haskey(d1, "pi"))
 println(keys(d1))
