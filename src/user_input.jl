@@ -25,5 +25,3 @@ function get_power(s)
 end
 
 input_result = uinput()
-println(get_power(input_result[1]))
-println(input_result[2](6))
