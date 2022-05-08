@@ -22,3 +22,4 @@
  - [Wikipedia.org - Gauss–Kronrod quadrature formula](https://en.wikipedia.org/wiki/Gauss–Kronrod_quadrature_formula)
  - [Hmong.press - Квадратура Гаусса-Кронрода](https://www.hmong.press/wiki/Gauss–Kronrod_quadrature_formula)
  - [julialang.org - Julia syntax](https://docs.julialang.org/en/v1/manual/functions/)
+ - [Solving non-linear systems of equations in Julia.](https://github.com/JuliaNLSolvers/NLsolve.jl)
