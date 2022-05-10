@@ -38,6 +38,8 @@ for n = 1:2, m = 1:3
     println(a6[n, m])
 end
 a7 = [2^n for n in 1:10]
+a8 = a4[1:2:end]
+println(a8)
 
 
 #Dicts
