@@ -2,11 +2,16 @@
 using Roots
 
 # function get_legendre_polynome(n)::Function
-#     arr = [x -> 1, x -> x]
-#     for i in 3:n+1
-#         push!(arr, x -> ((((2 * n - 1) / n)) * x * arr[i - 1](x) - ((n-1) / n) * arr[i - 2](x)))
+#     f1 = x -> 1
+#     f2 = x -> x
+#     for i in 3:n + 1
+#         coef = i - 1
+#         next_f = x -> ((((2 * coef - 1) / coef)) * x * f1(x) - ((coef - 1) / coef) * f2(x))
+#         f1 = x -> f2(x)
+#         f2 = x -> next_f(x)
 #     end
-#     return arr[n+1]
+#     print(f2(0.5))
+#     return f2
 # end
 
 function get_legendre_polynome(n)::Function
@@ -23,12 +28,23 @@ function get_legendre_polynome_derivative(n, pₙ::Function, pₙ₋₁::Functio
     return x -> ((n / (1 - x^2)) * (pₙ₋₁(x) - x * pₙ(x)))
 end
 
+function find_legendre_polynome_roots(n, pₙ::Function, legendre_polynome_derivative::Function)
+    roots = [cos(pi * (4 * i - 1) / (4 * n + 2)) for i in 1:n]
+    #println(roots)
+    for i in 1:n
+        for _ in 1:n
+            roots[i] = roots[i] - pₙ(roots[i]) / legendre_polynome_derivative(roots[i])
+        end
+    end
+    return roots
+end
 
 function find_legendre_points_and_weights(n)
     pₙ = get_legendre_polynome(n)
     pₙ₋₁ = get_legendre_polynome(n-1)
     legendre_polynome_derivative = get_legendre_polynome_derivative(n, pₙ, pₙ₋₁)
-    points = find_zeros(pₙ, -1, 1)
+    #points = find_zeros(pₙ, -1, 1)
+    points = find_legendre_polynome_roots(n, pₙ, legendre_polynome_derivative)
 
     calc_weights(x) = 2 / ((1 - x^2) * (legendre_polynome_derivative(x))^2)
     weights = [calc_weights(xᵢ) for xᵢ in points]
