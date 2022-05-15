@@ -72,7 +72,7 @@ function main()
     res = solve(2, 2, 3)
     fin = 0
     for i in 1:2:length(res) 
-        fin = (res[i] * res[i + 1]^2)
+        fin += (res[i] * res[i + 1]^2)
     end
     println(fin)
 end
