@@ -39,6 +39,10 @@ function scale_x(x, a, b)
     return (b - a) * x / 2 + (a + b) / 2
 end
 
+function calculate_error(gauss_integral, gauss_kronrod_integral)
+    return (200 * abs(gauss_kronrod_integral - gauss_integral))^(3/2)
+end
+
 function solve(f::Function, lower_bound::Float64, upper_bound::Float64, n::UInt64)
     gauss_points, gauss_weights = find_legendre_points_and_weights(n)
     kronrod_points, kronrod_weights = find_legendre_points_and_weights(2 * n + 1)
@@ -57,5 +61,5 @@ function solve(f::Function, lower_bound::Float64, upper_bound::Float64, n::UInt6
     end
     gauss_kronrod_integral *= changed_bounds_coefficient
 
-    return gauss_integral, gauss_kronrod_integral
+    return gauss_integral, gauss_kronrod_integral, calculate_error(gauss_integral, gauss_kronrod_integral)
 end
