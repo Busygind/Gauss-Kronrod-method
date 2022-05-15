@@ -7,7 +7,7 @@ function input_function()
         return f
     catch
         println("Некорректный ввод")
-        return uinput()
+        return input_function()
     end
 end
 

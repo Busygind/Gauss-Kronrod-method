@@ -39,28 +39,23 @@ function scale_x(x, a, b)
     return (b - a) * x / 2 + (a + b) / 2
 end
 
-function main()
-    #function_init
-    lower_bound = 2
-    upper_bound = 4
-    f(x) = (x^2)
+function solve(f::Function, lower_bound::Float64, upper_bound::Float64, n::UInt64)
+    gauss_points, gauss_weights = find_legendre_points_and_weights(n)
+    kronrod_points, kronrod_weights = find_legendre_points_and_weights(2 * n + 1)
 
+    changed_bounds_coefficient = (upper_bound - lower_bound) / 2
 
-    points, weights = find_legendre_points_and_weights(3)
-    kronrod_points, kronrod_weights = find_legendre_points_and_weights(15)
-    res = 0
-    for i in 1:length(points)
-        res += (weights[i] * f(scale_x(points[i], lower_bound, upper_bound)))
+    gauss_integral = 0
+    for i in 1:length(gauss_points)
+        gauss_integral += (gauss_weights[i] * f(scale_x(gauss_points[i], lower_bound, upper_bound)))
     end
-    res *= (upper_bound - lower_bound) / 2
-    println(res)
+    gauss_integral *= changed_bounds_coefficient
 
-    res = 0
+    gauss_kronrod_integral = 0
     for i in 1:length(kronrod_points)
-        res += (kronrod_weights[i] * f(scale_x(kronrod_points[i], lower_bound, upper_bound)))
+        gauss_kronrod_integral += (kronrod_weights[i] * f(scale_x(kronrod_points[i], lower_bound, upper_bound)))
     end
-    res *= (upper_bound - lower_bound) / 2
-    println(res)
-end
+    gauss_kronrod_integral *= changed_bounds_coefficient
 
-main()
+    return gauss_integral, gauss_kronrod_integral
+end
