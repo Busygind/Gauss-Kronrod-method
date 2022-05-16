@@ -1,19 +1,3 @@
-#Pkg.add("Roots")
-using Roots
-
-# function get_legendre_polynome(n)::Function
-#     f1 = x -> 1
-#     f2 = x -> x
-#     for i in 3:n + 1
-#         coef = i - 1
-#         next_f = x -> ((((2 * coef - 1) / coef)) * x * f1(x) - ((coef - 1) / coef) * f2(x))
-#         f1 = x -> f2(x)
-#         f2 = x -> next_f(x)
-#     end
-#     print(f2(0.5))
-#     return f2
-# end
-
 function get_legendre_polynome(n)::Function
     if n == 0
         return x -> 1
