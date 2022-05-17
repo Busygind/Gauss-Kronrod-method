@@ -27,7 +27,6 @@ function find_legendre_points_and_weights(n)
     pₙ = get_legendre_polynome(n)
     pₙ₋₁ = get_legendre_polynome(n-1)
     legendre_polynome_derivative = get_legendre_polynome_derivative(n, pₙ, pₙ₋₁)
-    #points = find_zeros(pₙ, -1, 1)
     points = find_legendre_polynome_roots(n, pₙ, legendre_polynome_derivative)
 
     calc_weights(x) = 2 / ((1 - x^2) * (legendre_polynome_derivative(x))^2)

@@ -13,13 +13,6 @@ function output_answer(i, f, a, b, g_integral, gk_integral, error, answer)
     println()
     println("Погрешность метода Гаусса: ", error)
     printstyled("Посчитал Сергей Вольфрам: ", answer, color = :green)
-    println()
-    printstyled("Посчитал Ромка: ", answer + 123, color = :red)
-    println()
-    printstyled("Посчитал Димка: ", answer -3513, color = :red)
-    println()
-    printstyled("Посчитал Рамзик: ", 0, color = :red)
-    println()
     println("===============================")
 end
 
